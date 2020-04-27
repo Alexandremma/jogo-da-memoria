@@ -1,5 +1,9 @@
-const FRONT = "card_front";
-const BACK = "card_back";
+const FRONT_CLASS = "card_front";
+const BACK_CLASS = "card_back";
+const CARD_CLASS = "card";
+const ICON_CLASS = "icon";
+
+const BACK_TEXT = "&lt/&gt";
 
 let snacks = [
     'batataCoca',
@@ -15,12 +19,51 @@ let snacks = [
 ];
 
 let cards = null;
+
 startGame()
 
 function startGame() {
     cards = createCardsFromSnacks(snacks);
     shuffleCards(cards);
-    console.log(cards);
+
+    initializeCards(cards);
+}
+
+function initializeCards(cards) {
+    let gameBoard = document.getElementById('gameBoard');
+    
+    for(let card of cards) {
+        let cardElement = document.createElement('div');
+        cardElement.id = card.id; 
+        cardElement.classList.add(CARD_CLASS);
+        cardElement.dataset.icon = card.icon;
+
+        createCardContent(card, cardElement);
+
+        cardElement.addEventListener('click', flipCard);
+        gameBoard.appendChild(cardElement);
+    }
+}
+
+function createCardContent(card, cardElement) {
+    createCardFace(FRONT_CLASS, card, cardElement);
+    createCardFace(BACK_CLASS, card, cardElement);
+}
+
+function createCardFace(face, card, element) {
+    let cardElementFace = document.createElement('div');
+    cardElementFace.classList.add(face);
+
+    if(face === FRONT_CLASS) {
+        let iconElement = document.createElement('img');
+        iconElement.classList.add(ICON_CLASS);
+        iconElement.src = `./assets/images/${card.icon}.png`;
+        cardElementFace.appendChild(iconElement);
+    } else {
+        cardElementFace.innerHTML = BACK_TEXT;
+    }
+
+    element.appendChild(cardElementFace);
 }
 
 function shuffleCards(cards) {
@@ -46,7 +89,6 @@ function createCardsFromSnacks(snacks) {
 }
 
 function createPairFromSnack(snack) {
-
     return [
         {
             id: createIdFromSnack(snack),
@@ -59,9 +101,12 @@ function createPairFromSnack(snack) {
             flipped: false
         }
     ]
-
 }
 
 function createIdFromSnack(snack) {
     return snack + parseInt(Math.random() * 1000);
+}
+
+function flipCard() {
+     this.classList.add('flip');
 }
