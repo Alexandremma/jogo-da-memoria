@@ -4,6 +4,21 @@ let game = {
     firstCard: null,
     secondCard: null,
 
+    snacks: [
+        'batataCoca',
+        'bigMc',
+        'cheddar',
+        'chicken',
+        'fish',
+        'nuggets',
+        'quarteirao',
+        'tasty',
+        'triploTasty',
+        'triploBurguerBacon'
+    ],
+
+    cards: null,
+
     setCard: function (id) {
         let card = this.cards.filter(card => card.id === id)[0];
 
@@ -43,21 +58,10 @@ let game = {
         this.firstCard.flipped = false;
         this.secondCard.flipped = false;
     },
-        
-    snacks: [
-        'batataCoca',
-        'bigMc',
-        'cheddar',
-        'chicken',
-        'fish',
-        'nuggets',
-        'quarteirao',
-        'tasty',
-        'triploTasty',
-        'triploBurguerBacon'
-    ],
 
-    cards: null,
+    checkGameOver: function () {
+        return this.cards.filter(card => !card.flipped).length == 0;
+    },
 
     createCardsFromSnacks: function () {
         this.cards = [];

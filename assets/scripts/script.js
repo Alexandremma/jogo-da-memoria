@@ -4,6 +4,8 @@ const CARD_CLASS = "card";
 const ICON_CLASS = "icon";
 const FLIP_CLASS = "flip";
 
+const GAMEOVER_ID = "gameOver";
+
 const BACK_TEXT = "&lt/&gt";
 
 startGame();
@@ -16,6 +18,7 @@ function startGame() {
 
 function initializeCards() {
     let gameBoard = document.getElementById('gameBoard');
+    gameBoard.innerHTML = '';
 
     for (let card of game.cards) {
         let cardElement = document.createElement('div');
@@ -57,7 +60,12 @@ function flipCard() {
 
         if (game.secondCard) {
             if (game.checkMatch()) {
-                game.clearCards();    
+                game.clearCards();
+                
+                if (game.checkGameOver()) {
+                    let gameOverLayer = document.getElementById(GAMEOVER_ID);
+                    gameOverLayer.style.display = 'flex';
+                }
             } else {
                 setTimeout(() => {
                     let firstCardView = document.getElementById(game.firstCard.id);
@@ -71,4 +79,12 @@ function flipCard() {
             }
         }
     }
+}
+
+function restart() {
+    game.clearCards();
+    startGame();
+
+    let gameOverLayer = document.getElementById(GAMEOVER_ID);
+    gameOverLayer.style.display = 'none';
 }
