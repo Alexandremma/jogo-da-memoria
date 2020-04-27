@@ -36,7 +36,6 @@ body {
     justify-content: center;
     align-items: center;
 
-    /* afeta quem estiver com rotate */
     backface-visibility: hidden;
 }
 
