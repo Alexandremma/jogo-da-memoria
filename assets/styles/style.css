@@ -16,8 +16,8 @@ body {
 }
 
 .card {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 
     position: relative;
 
@@ -50,8 +50,18 @@ body {
 
 .card_back {
     color: #101c2c;
-    background: #05c3ff;
-    font-size: 30px;
+    background: #A61522;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.card_back:hover {
+    opacity: 0.7;
+}
+
+img {
+    width: 100px;
 }
 
 #gameOver {
@@ -88,6 +98,6 @@ body {
     max-width: 700px;
     
     display: grid;
-    grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
 }

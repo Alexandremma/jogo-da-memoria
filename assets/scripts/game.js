@@ -5,10 +5,10 @@ let game = {
     secondCard: null,
 
     snacks: [
-        'batataCoca',
         'bigMc',
         'cheddar',
         'chicken',
+        'coca',
         'fish',
         'nuggets',
         'quarteirao',
