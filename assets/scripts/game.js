@@ -66,9 +66,13 @@ let game = {
     createCardsFromSnacks: function () {
         this.cards = [];
 
-        for (let snack of this.snacks) {
+        this.snacks.map(snack => {
             this.cards.push(this.createPairFromSnack(snack));
-        }
+        })
+
+        // for (let snack of this.snacks) {
+        //     this.cards.push(this.createPairFromSnack(snack));
+        // }
 
         this.cards = this.cards.flatMap(pair => pair);
         this.shuffleCards();

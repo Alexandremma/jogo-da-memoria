@@ -20,7 +20,7 @@ function initializeCards() {
     let gameBoard = document.getElementById('gameBoard');
     gameBoard.innerHTML = '';
 
-    for (let card of game.cards) {
+    game.cards.map(card => {
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
         cardElement.classList.add(CARD_CLASS);
@@ -30,7 +30,19 @@ function initializeCards() {
 
         cardElement.addEventListener('click', flipCard);
         gameBoard.appendChild(cardElement);
-    }
+    })
+
+    // for (let card of game.cards) {
+    //     let cardElement = document.createElement('div');
+    //     cardElement.id = card.id;
+    //     cardElement.classList.add(CARD_CLASS);
+    //     cardElement.dataset.icon = card.icon;
+
+    //     createCardContent(card, cardElement);
+
+    //     cardElement.addEventListener('click', flipCard);
+    //     gameBoard.appendChild(cardElement);
+    // }
 }
 
 function createCardContent(card, cardElement) {
