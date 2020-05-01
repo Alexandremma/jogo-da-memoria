@@ -70,27 +70,9 @@ function flipCard() {
 
                 refreshPlayersScore();
 
-                // if (game.playerTime === 0) {
-                //     game.player1Points++;
-
-                //     let player1View = document.getElementById('player1Points');
-                //     player1View.textContent = `Player 1: ${game.player1Points}`;
-                // } else {
-                //     game.player2Points++;
-
-                //     let player2View = document.getElementById('player2Points');
-                //     player2View.textContent = `Player 2: ${game.player2Points}`;
-                // }
-
                 if (game.checkGameOver()) {
                     let gameOverMessage = document.getElementById('gameOverMessage');
-                    if (game.player1Points > game.player2Points) {
-                        gameOverMessage.textContent = 'Parabéns Player 1, você ganhou o jogo!';
-                    } else if (game.player2Points > game.player1Points) {
-                        gameOverMessage.textContent = 'Parabéns Player 2, você ganhou o jogo!';
-                    } else {
-                        gameOverMessage.textContent = 'Empate!';
-                    }
+                    gameOverMessage.textContent = playerWinMessage();
 
                     let gameOverLayer = document.getElementById(GAMEOVER_ID);
                     gameOverLayer.style.display = 'flex';
@@ -109,6 +91,16 @@ function flipCard() {
                 }, 1000);
             }
         }
+    }
+}
+
+function playerWinMessage() {
+    if (game.player1Points > game.player2Points) {
+        return 'Parabéns Player 1, você ganhou o jogo!';
+    } else if (game.player2Points > game.player1Points) {
+        return 'Parabéns Player 2, você ganhou o jogo!';
+    } else {
+        return 'Empate!';
     }
 }
 
