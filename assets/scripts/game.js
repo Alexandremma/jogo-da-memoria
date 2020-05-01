@@ -3,6 +3,9 @@ let game = {
     lockMode: false,
     firstCard: null,
     secondCard: null,
+    playerTime: 0,
+    player1Points: 0,
+    player2Points: 0,
 
     snacks: [
         'bigMc',
@@ -26,8 +29,6 @@ let game = {
             return false;
         }
 
-        console.log(this.cards);
-
         if (!this.firstCard) {
             this.firstCard = card;
             this.firstCard.flipped = true;
@@ -46,6 +47,10 @@ let game = {
         }
 
         return this.firstCard.icon === this.secondCard.icon;
+    },
+
+    playerScore: function() {
+        (this.playerTime === 0) ? this.player1Points++ : this.player2Points++;
     },
 
     clearCards: function () {
@@ -69,10 +74,6 @@ let game = {
         this.snacks.map(snack => {
             this.cards.push(this.createPairFromSnack(snack));
         })
-
-        // for (let snack of this.snacks) {
-        //     this.cards.push(this.createPairFromSnack(snack));
-        // }
 
         this.cards = this.cards.flatMap(pair => pair);
         this.shuffleCards();

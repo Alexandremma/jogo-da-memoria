@@ -16,12 +16,20 @@
 
     <body>
 
-        <div id="gameBoard"></div>
+        <div id="game">
+            <div id="playerPoints">
+                <p id="player1Points"></p>
+                <p id="player2Points"></p>
+            </div>
+
+            <div id="gameBoard">
+            </div>
+        </div>
 
         <div id="gameOver">
-            <div>
-                Parabéns, você completou o jogo!
+            <div id="gameOverMessage"> 
             </div>
+
             <button id="restart" onclick="restart()">
                 Jogue novamente
             </button>

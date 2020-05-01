@@ -15,6 +15,14 @@ body {
     background-color: #c7cdd3;
 }
 
+#playerPoints {
+    margin: 10px 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .card {
     width: 120px;
     height: 120px;
